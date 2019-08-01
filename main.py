@@ -12,7 +12,8 @@ if __name__ == '__main__':
     dataset = SmallNORBDataset(dataset_root='../datasets/smallnorb/')
     #
     # # Dump all images to disk
-    dataset.export_to_jpg(export_dir='smallnorb_export')
+    # dataset.export_to_jpg(export_dir='smallnorb_export')
+    dataset.get_data()
 
     # Explore random examples of the training set
     # to show how data look like
