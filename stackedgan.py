@@ -562,6 +562,7 @@ if __name__ == '__main__':
         p0 = args.p0
         p1 = args.p1
         params = (class_label, z0, z1, p0, p1)
+        print('xixixix ')
         test_generator((gen0, gen1), params)
     else:
         build_and_train_models()
