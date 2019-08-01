@@ -342,7 +342,7 @@ def train_encoder(model, data, model_name="stackedgan_mnist", batch_size=64):
     model.fit(x_train,
               y_train,
               validation_data=(x_test, y_test),
-              epochs=1,
+              epochs=1, # default = 10
               batch_size=batch_size)
 
     model.save(model_name + "-encoder.h5")
@@ -371,7 +371,7 @@ def build_and_train_models():
     model_name = "stackedgan_mnist"
     # network parameters
     batch_size = 64
-    train_steps = 10000
+    train_steps = 100  # default 10000
     lr = 2e-4
     decay = 6e-8
     input_shape = (image_size, image_size, 1)
