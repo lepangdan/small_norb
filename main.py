@@ -39,5 +39,8 @@ if __name__ == '__main__':
     print('max data:', np.amax(data))
     print('min data:', np.amin(data))
 
+    import glob
+    print(glob.glob("smallnorb_export/train"))
+
     # show the image
     # image.show()
