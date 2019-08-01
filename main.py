@@ -40,11 +40,13 @@ if __name__ == '__main__':
     print('max data:', np.amax(data))
     print('min data:', np.amin(data))
 
-    import glob
-    for image_path in glob.glob("smallnorb_export/train/"+"*.jpg"):
-    # print(glob.glob("smallnorb_export/train/"+"*.jpg"))
-        print(image_path)
-        break
+    def load_data(dataset_split):
+        import glob
+        for image_path in glob.glob('smallnorb_export/'+str(dataset_split)+'/*.jpg'):
+        # print(glob.glob("smallnorb_export/train/"+"*.jpg"))
+            print(image_path)
+            break
+    load_data('train')
 
 
     # show the image
