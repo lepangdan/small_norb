@@ -380,108 +380,109 @@ def build_and_train_models():
     z_shape = (z_dim,)
     feature1_dim = 256
     feature1_shape = (feature1_dim,)
+    
 
-    # build discriminator 0 and Q network 0 models
-    inputs = Input(shape=input_shape, name='discriminator0_input')
-    dis0 = gan.discriminator(inputs, num_codes=z_dim)
-    # [1] uses Adam, but discriminator converges easily with RMSprop
-    optimizer = RMSprop(lr=lr, decay=decay)
-    # loss fuctions: 1) probability image is real (adversarial0 loss)
-    # 2) MSE z0 recon loss (Q0 network loss or entropy0 loss)
-    loss = ['binary_crossentropy', 'mse']
-    loss_weights = [1.0, 10.0]
-    dis0.compile(loss=loss,
-                 loss_weights=loss_weights,
-                 optimizer=optimizer,
-                 metrics=['accuracy'])
-    dis0.summary()  # image discriminator, z0 estimator
-
-    # build discriminator 1 and Q network 1 models
-    input_shape = (feature1_dim,)
-    inputs = Input(shape=input_shape, name='discriminator1_input')
-    dis1 = build_discriminator(inputs, z_dim=z_dim)
-    # loss fuctions: 1) probability feature1 is real (adversarial1 loss)
-    # 2) MSE z1 recon loss (Q1 network loss or entropy1 loss)
-    loss = ['binary_crossentropy', 'mse']
-    loss_weights = [1.0, 1.0]
-    dis1.compile(loss=loss,
-                 loss_weights=loss_weights,
-                 optimizer=optimizer,
-                 metrics=['accuracy'])
-    dis1.summary()  # feature1 discriminator, z1 estimator
-
-    # build generator models
-    feature1 = Input(shape=feature1_shape, name='feature1_input')
-    labels = Input(shape=label_shape, name='labels')
-    z1 = Input(shape=z_shape, name="z1_input")
-    z0 = Input(shape=z_shape, name="z0_input")
-    latent_codes = (labels, z0, z1, feature1)
-    gen0, gen1 = build_generator(latent_codes, image_size)
-    gen0.summary()  # image generator
-    gen1.summary()  # feature1 generator
-
-    # build encoder models
-    input_shape = (image_size, image_size, 1)
-    inputs = Input(shape=input_shape, name='encoder_input')
-    enc0, enc1 = build_encoder((inputs, feature1), num_labels)
-    enc0.summary()  # image to feature1 encoder
-    enc1.summary()  # feature1 to labels encoder (classifier)
-    encoder = Model(inputs, enc1(enc0(inputs)))
-    encoder.summary()  # image to labels encoder (classifier)
-
-    data = (x_train, y_train), (x_test, y_test)
-    train_encoder(encoder, data, model_name=model_name)
-
-    # build adversarial0 model =
-    # generator0 + discriminator0 + encoder0
-    optimizer = RMSprop(lr=lr * 0.5, decay=decay * 0.5)
-    # encoder0 weights frozen
-    enc0.trainable = False
-    # discriminator0 weights frozen
-    dis0.trainable = False
-    gen0_inputs = [feature1, z0]
-    gen0_outputs = gen0(gen0_inputs)
-    adv0_outputs = dis0(gen0_outputs) + [enc0(gen0_outputs)]
-    # feature1 + z0 to prob feature1 is
-    # real + z0 recon + feature0/image recon
-    adv0 = Model(gen0_inputs, adv0_outputs, name="adv0")
-    # loss functions: 1) prob feature1 is real (adversarial0 loss)
-    # 2) Q network 0 loss (entropy0 loss)
-    # 3) conditional0 loss
-    loss = ['binary_crossentropy', 'mse', 'mse']
-    loss_weights = [1.0, 10.0, 1.0]
-    adv0.compile(loss=loss,
-                 loss_weights=loss_weights,
-                 optimizer=optimizer,
-                 metrics=['accuracy'])
-    adv0.summary()
-
-    # build adversarial1 model =
-    # generator1 + discriminator1 + encoder1
-    # encoder1 weights frozen
-    enc1.trainable = False
-    # discriminator1 weights frozen
-    dis1.trainable = False
-    gen1_inputs = [labels, z1]
-    gen1_outputs = gen1(gen1_inputs)
-    adv1_outputs = dis1(gen1_outputs) + [enc1(gen1_outputs)]
-    # labels + z1 to prob labels are real + z1 recon + feature1 recon
-    adv1 = Model(gen1_inputs, adv1_outputs, name="adv1")
-    # loss functions: 1) prob labels are real (adversarial1 loss)
-    # 2) Q network 1 loss (entropy1 loss)
-    # 3) conditional1 loss (classifier error)
-    loss_weights = [1.0, 1.0, 1.0]
-    loss = ['binary_crossentropy', 'mse', 'categorical_crossentropy']
-    adv1.compile(loss=loss,
-                 loss_weights=loss_weights,
-                 optimizer=optimizer,
-                 metrics=['accuracy'])
-    adv1.summary()
-
-    # train discriminator and adversarial networks
-    models = (enc0, enc1, gen0, gen1, dis0, dis1, adv0, adv1)
-    params = (batch_size, train_steps, num_labels, z_dim, model_name)
-    train(models, data, params)
+    # # build discriminator 0 and Q network 0 models
+    # inputs = Input(shape=input_shape, name='discriminator0_input')
+    # dis0 = gan.discriminator(inputs, num_codes=z_dim)
+    # # [1] uses Adam, but discriminator converges easily with RMSprop
+    # optimizer = RMSprop(lr=lr, decay=decay)
+    # # loss fuctions: 1) probability image is real (adversarial0 loss)
+    # # 2) MSE z0 recon loss (Q0 network loss or entropy0 loss)
+    # loss = ['binary_crossentropy', 'mse']
+    # loss_weights = [1.0, 10.0]
+    # dis0.compile(loss=loss,
+    #              loss_weights=loss_weights,
+    #              optimizer=optimizer,
+    #              metrics=['accuracy'])
+    # dis0.summary()  # image discriminator, z0 estimator
+    #
+    # # build discriminator 1 and Q network 1 models
+    # input_shape = (feature1_dim,)
+    # inputs = Input(shape=input_shape, name='discriminator1_input')
+    # dis1 = build_discriminator(inputs, z_dim=z_dim)
+    # # loss fuctions: 1) probability feature1 is real (adversarial1 loss)
+    # # 2) MSE z1 recon loss (Q1 network loss or entropy1 loss)
+    # loss = ['binary_crossentropy', 'mse']
+    # loss_weights = [1.0, 1.0]
+    # dis1.compile(loss=loss,
+    #              loss_weights=loss_weights,
+    #              optimizer=optimizer,
+    #              metrics=['accuracy'])
+    # dis1.summary()  # feature1 discriminator, z1 estimator
+    #
+    # # build generator models
+    # feature1 = Input(shape=feature1_shape, name='feature1_input')
+    # labels = Input(shape=label_shape, name='labels')
+    # z1 = Input(shape=z_shape, name="z1_input")
+    # z0 = Input(shape=z_shape, name="z0_input")
+    # latent_codes = (labels, z0, z1, feature1)
+    # gen0, gen1 = build_generator(latent_codes, image_size)
+    # gen0.summary()  # image generator
+    # gen1.summary()  # feature1 generator
+    #
+    # # build encoder models
+    # input_shape = (image_size, image_size, 1)
+    # inputs = Input(shape=input_shape, name='encoder_input')
+    # enc0, enc1 = build_encoder((inputs, feature1), num_labels)
+    # enc0.summary()  # image to feature1 encoder
+    # enc1.summary()  # feature1 to labels encoder (classifier)
+    # encoder = Model(inputs, enc1(enc0(inputs)))
+    # encoder.summary()  # image to labels encoder (classifier)
+    #
+    # data = (x_train, y_train), (x_test, y_test)
+    # train_encoder(encoder, data, model_name=model_name)
+    #
+    # # build adversarial0 model =
+    # # generator0 + discriminator0 + encoder0
+    # optimizer = RMSprop(lr=lr * 0.5, decay=decay * 0.5)
+    # # encoder0 weights frozen
+    # enc0.trainable = False
+    # # discriminator0 weights frozen
+    # dis0.trainable = False
+    # gen0_inputs = [feature1, z0]
+    # gen0_outputs = gen0(gen0_inputs)
+    # adv0_outputs = dis0(gen0_outputs) + [enc0(gen0_outputs)]
+    # # feature1 + z0 to prob feature1 is
+    # # real + z0 recon + feature0/image recon
+    # adv0 = Model(gen0_inputs, adv0_outputs, name="adv0")
+    # # loss functions: 1) prob feature1 is real (adversarial0 loss)
+    # # 2) Q network 0 loss (entropy0 loss)
+    # # 3) conditional0 loss
+    # loss = ['binary_crossentropy', 'mse', 'mse']
+    # loss_weights = [1.0, 10.0, 1.0]
+    # adv0.compile(loss=loss,
+    #              loss_weights=loss_weights,
+    #              optimizer=optimizer,
+    #              metrics=['accuracy'])
+    # adv0.summary()
+    #
+    # # build adversarial1 model =
+    # # generator1 + discriminator1 + encoder1
+    # # encoder1 weights frozen
+    # enc1.trainable = False
+    # # discriminator1 weights frozen
+    # dis1.trainable = False
+    # gen1_inputs = [labels, z1]
+    # gen1_outputs = gen1(gen1_inputs)
+    # adv1_outputs = dis1(gen1_outputs) + [enc1(gen1_outputs)]
+    # # labels + z1 to prob labels are real + z1 recon + feature1 recon
+    # adv1 = Model(gen1_inputs, adv1_outputs, name="adv1")
+    # # loss functions: 1) prob labels are real (adversarial1 loss)
+    # # 2) Q network 1 loss (entropy1 loss)
+    # # 3) conditional1 loss (classifier error)
+    # loss_weights = [1.0, 1.0, 1.0]
+    # loss = ['binary_crossentropy', 'mse', 'categorical_crossentropy']
+    # adv1.compile(loss=loss,
+    #              loss_weights=loss_weights,
+    #              optimizer=optimizer,
+    #              metrics=['accuracy'])
+    # adv1.summary()
+    #
+    # # train discriminator and adversarial networks
+    # models = (enc0, enc1, gen0, gen1, dis0, dis1, adv0, adv1)
+    # params = (batch_size, train_steps, num_labels, z_dim, model_name)
+    # train(models, data, params)
 
 
 def test_generator(generators, params, z_dim=50):
@@ -562,8 +563,6 @@ if __name__ == '__main__':
         p0 = args.p0
         p1 = args.p1
         params = (class_label, z0, z1, p0, p1)
-        print('xixixix ')
         test_generator((gen0, gen1), params)
     else:
         build_and_train_models()
-        print('ffffff')
