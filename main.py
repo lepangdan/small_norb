@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     # Initialize the dataset from the folder in which
     # dataset archives have been uncompressed
-    dataset = SmallNORBDataset(dataset_root='./smallnorb/')
+    dataset = SmallNORBDataset(dataset_root='../dataset/smallnorb/')
 
     # Dump all images to disk
     dataset.export_to_jpg(export_dir='smallnorb_export')
