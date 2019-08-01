@@ -36,6 +36,7 @@ import math
 import matplotlib.pyplot as plt
 import os
 import argparse
+import utils
 
 import sys
 
@@ -355,10 +356,8 @@ def build_and_train_models():
     # (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     # load small_norb data
-
-
-
-
+    (x_train, y_train) = utils.load_data('train')
+    (x_test, y_test) = utils.load_data('test')
 
     # reshape and normalize images
     image_size = x_train.shape[1]
