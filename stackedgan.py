@@ -353,13 +353,14 @@ def train_encoder(model, data, model_name="stackedgan_mnist", batch_size=64):
 
 def build_and_train_models():
     # load MNIST dataset
-    # (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-    # load small_norb data
-    (x_train, y_train) = utils.load_data('train')
-    (x_test, y_test) = utils.load_data('test')
+    # # load small_norb data
+    # (x_train, y_train) = utils.load_data('train')
+    # (x_test, y_test) = utils.load_data('test')
 
     # reshape and normalize images
+    print(x_train.shape)
     image_size = x_train.shape[1]
     x_train = np.reshape(x_train, [-1, image_size, image_size, 1])
     x_train = x_train.astype('float32') / 255
