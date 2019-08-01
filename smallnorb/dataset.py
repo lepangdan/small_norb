@@ -104,6 +104,8 @@ class SmallNORBDataset:
                 plt.waitforbuttonpress()
                 plt.cla()
 
+
+
     def export_to_jpg(self, export_dir):
         """
         Export all dataset images to `export_dir` directory
@@ -130,11 +132,13 @@ class SmallNORBDataset:
                     category = SmallNORBDataset.categories[norb_example.category]
                     instance = norb_example.instance
 
-                    image_lt_path = join(split_dir, '{:06d}_{}_{:02d}_lt.jpg'.format(i, category, instance))
-                    image_rt_path = join(split_dir, '{:06d}_{}_{:02d}_rt.jpg'.format(i, category, instance))
+                    print(type(norb_example))
 
-                    scipy.misc.imsave(image_lt_path, norb_example.image_lt)
-                    scipy.misc.imsave(image_rt_path, norb_example.image_rt)
+                    # image_lt_path = join(split_dir, '{:06d}_{}_{:02d}_lt.jpg'.format(i, category, instance))
+                    # image_rt_path = join(split_dir, '{:06d}_{}_{:02d}_rt.jpg'.format(i, category, instance))
+                    #
+                    # scipy.misc.imsave(image_lt_path, norb_example.image_lt)
+                    # scipy.misc.imsave(image_rt_path, norb_example.image_rt)
             print('Done.')
     
     def group_dataset_by_category_and_instance(self, dataset_split):
