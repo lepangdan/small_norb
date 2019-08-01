@@ -3,7 +3,6 @@ import numpy as np
 import glob
 
 def load_data(dataset_split):
-
     first_flag = True
     x_data = None
     y_data = None
