@@ -357,7 +357,12 @@ def build_and_train_models():
 
     # load small_norb data
     (x_train, y_train) = utils.load_data('train')
+    np.save('x_train', x_train)
+    np.save('y_train', y_train)
     (x_test, y_test) = utils.load_data('test')
+    np.save('x_test', x_test)
+    np.save('y_test', y_test)
+
 
     # reshape and normalize images
     print(x_train.shape)

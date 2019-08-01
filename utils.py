@@ -22,4 +22,5 @@ def load_data(dataset_split):
         else:
             x_data = np.concatenate((x_data, image_np), axis=0)
         print(np.shape(x_data))
-    return x_data, y_data
+        break
+    # return x_data, y_data
