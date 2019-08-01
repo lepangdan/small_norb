@@ -143,6 +143,7 @@ class SmallNORBDataset:
             print('Done.')
     def get_data(self):
         train_data = self.data['train']
+        print('train_data', train_data)
         print(type(train_data))
 
     
