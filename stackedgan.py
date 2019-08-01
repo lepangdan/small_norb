@@ -353,6 +353,8 @@ def train_encoder(model, data, model_name="stackedgan_mnist", batch_size=64):
 def build_and_train_models():
     # load MNIST dataset
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    print(x_train[1])
+    print(y_train[1])
 
     # reshape and normalize images
     image_size = x_train.shape[1]
@@ -380,7 +382,7 @@ def build_and_train_models():
     z_shape = (z_dim,)
     feature1_dim = 256
     feature1_shape = (feature1_dim,)
-    
+
 
     # # build discriminator 0 and Q network 0 models
     # inputs = Input(shape=input_shape, name='discriminator0_input')
