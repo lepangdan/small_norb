@@ -28,5 +28,7 @@ if __name__ == '__main__':
     print(image.format)
     print(image.mode)
     print(image.size)
+    print(image)
+
     # show the image
     # image.show()
