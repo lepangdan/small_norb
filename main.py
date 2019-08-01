@@ -52,18 +52,18 @@ if __name__ == '__main__':
             image.load()
             image_np = np.asarray(image, dtype="int32")
             y_data = image_path.split(str(dataset_split))[1].split('_')[1]
-            print(y_data)
+            # print(y_data)
             if first_flag:
                 x_data = image_np
                 first_flag = False
             else:
                 x_data = np.stack((x_data, image_np))
-            print(x_data)
+            # print(x_data)
 
             break
-        return (x_data, y_data)
+        return x_data, y_data
 
-    load_data('train')
+    (x_train, y_train) = load_data('train')
 
 
     # show the image
