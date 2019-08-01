@@ -132,19 +132,15 @@ class SmallNORBDataset:
                     category = SmallNORBDataset.categories[norb_example.category]
                     instance = norb_example.instance
 
-                    # # print(type(norb_example.image_lt))
-                    # print(type(category))
 
                     image_lt_path = join(split_dir, '{:06d}_{}_{:02d}_lt.jpg'.format(i, category, instance))
                     image_rt_path = join(split_dir, '{:06d}_{}_{:02d}_rt.jpg'.format(i, category, instance))
 
+
                     scipy.misc.imsave(image_lt_path, norb_example.image_lt)
                     scipy.misc.imsave(image_rt_path, norb_example.image_rt)
             print('Done.')
-    def get_data(self):
-        train_data = self.data['train']
-        print('train_data', train_data)
-        print(type(train_data))
+
 
     
     def group_dataset_by_category_and_instance(self, dataset_split):
