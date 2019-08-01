@@ -132,7 +132,7 @@ class SmallNORBDataset:
                     category = SmallNORBDataset.categories[norb_example.category]
                     instance = norb_example.instance
 
-                    print(type(norb_example))
+                    print(type(norb_example.image_lt))
 
                     # image_lt_path = join(split_dir, '{:06d}_{}_{:02d}_lt.jpg'.format(i, category, instance))
                     # image_rt_path = join(split_dir, '{:06d}_{}_{:02d}_rt.jpg'.format(i, category, instance))
