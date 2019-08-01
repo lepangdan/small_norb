@@ -59,7 +59,9 @@ if __name__ == '__main__':
             else:
                 x_data = np.stack((x_data, image_np))
             print(x_data)
+
             break
+        return (x_data, y_data)
 
     load_data('train')
 
