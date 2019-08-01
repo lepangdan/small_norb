@@ -13,12 +13,11 @@ def load_data(dataset_split):
         image = Image.open(image_path)
         image.load()
         image_np = np.asarray(image, dtype="int32")
+        image_np = np.expand_dims(image_np, axis=0)
         y_data = image_path.split(str(dataset_split))[1].split('_')[1]
         print(y_data)
         if first_flag:
             x_data = image_np
-            x_data = np.expand_dims(x_data, axis=0 )
-
             first_flag = False
         else:
             x_data = np.concatenate((x_data, image_np), axis=0)
