@@ -51,7 +51,7 @@ if __name__ == '__main__':
             image = Image.open(image_path)
             image.load()
             image_np = np.asarray(image, dtype="int32")
-            y_data = image_path.split(str(dataset_split))
+            y_data = image_path.split(str(dataset_split))[1].split('_')
             print(y_data)
             if first_flag:
                 x_data = image_np
