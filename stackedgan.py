@@ -392,7 +392,6 @@ def build_and_train_models():
     feature1_dim = 256
     feature1_shape = (feature1_dim,)
 
-
     # # build discriminator 0 and Q network 0 models
     # inputs = Input(shape=input_shape, name='discriminator0_input')
     # dis0 = gan.discriminator(inputs, num_codes=z_dim)
