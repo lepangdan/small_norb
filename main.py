@@ -27,13 +27,14 @@ if __name__ == '__main__':
     image = Image.open('smallnorb_export/train/012149_car_04_rt.jpg')
     # summarize some details about the image
     image.load()
-    data = np.asarray(image, dtype="float32")
+    data = np.asarray(image, dtype="int32")
     print(image.format)
     print(image.mode)
     print(image.size)
     print(data)
     print('max data:', np.amax(data))
-    
+    print('min data:', np.amin(data))
+
 
     # show the image
     # image.show()
