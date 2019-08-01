@@ -17,3 +17,16 @@ if __name__ == '__main__':
     # Explore random examples of the training set
     # to show how data look like
     # dataset.explore_random_examples(dataset_split='train')
+
+
+    # load and show an image with Pillow
+    from PIL import Image
+
+    # load the image
+    image = Image.open('smallnorb_export/train/012149_car_04_rt.jpg ')
+    # summarize some details about the image
+    print(image.format)
+    print(image.mode)
+    print(image.size)
+    # show the image
+    # image.show()
