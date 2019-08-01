@@ -279,7 +279,7 @@ def build_and_train_models():
     # labelencoder = LabelEncoder()
     # y_train = labelencoder.fit_transform(y_train)
 
-    I, T = self.get_training_data()
+    I, T = utils.get_training_data()
     assert I.shape[1:] == (96, 96, 1)
 
     train_size = int(I.shape[0] * 0.8)

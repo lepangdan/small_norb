@@ -355,3 +355,57 @@ class DCGAN(object):
 
         return images[:, :, :, np.newaxis] / 255.0, labels
 
+def get_training_data(self):
+    fid_images = open('../datasets/smallnorb/smallnorb-5x46789x9x18x6x2x96x96-training-dat.mat', 'r')
+    fid_labels = open('../datasets/smallnorb/smallnorb-5x46789x9x18x6x2x96x96-training-cat.mat', 'r')
+
+    for i in range(6):
+        a = fid_images.read(4)  # header
+
+    num_images = 24300 * 2
+    images = np.zeros((num_images, 96, 96))
+
+    for idx in range(num_images):
+        temp = fid_images.read(96 * 96)
+        images[idx, :, :] = np.fromstring(temp, 'uint8').reshape(96, 96).T
+
+    for i in range(5):
+        a = fid_labels.read(4)  # header
+
+    labels = np.fromstring(fid_labels.read(num_images * np.dtype('int32').itemsize), 'int32')
+    labels = np.repeat(labels, 2)
+
+    perm = np.random.permutation(num_images)
+    images = images[perm]
+    labels = labels[perm]
+    labels = labels.reshape(images.shape[0], 1) == np.arange(5)  # one hot
+
+    return images[:, :, :, np.newaxis] / 255.0, labels
+
+def get_test_data(self):
+    fid_images = open('../data/NORB/smallnorb-5x01235x9x18x6x2x96x96-testing-dat.mat', 'r')
+    fid_labels = open('../data/NORB/smallnorb-5x01235x9x18x6x2x96x96-testing-cat.mat', 'r')
+
+    for i in range(6):
+        a = fid_images.read(4)  # header
+
+    num_images = 24300 * 2
+    images = np.zeros((num_images, 96, 96))
+
+    for idx in range(num_images):
+        temp = fid_images.read(96 * 96)
+        images[idx, :, :] = np.fromstring(temp, 'uint8').reshape(96, 96).T
+
+    for i in range(5):
+        a = fid_labels.read(4)  # header
+
+    labels = np.fromstring(fid_labels.read(num_images * np.dtype('int32').itemsize), 'int32')
+    labels = np.repeat(labels, 2)
+
+    perm = np.random.permutation(num_images)
+    images = images[perm]
+    labels = labels[perm]
+    labels = labels.reshape(images.shape[0], 1) == np.arange(5)  # one hot
+    # imshow(images[2331,:,:])
+
+    return images[:, :, :, np.newaxis] / 255.0, labels
