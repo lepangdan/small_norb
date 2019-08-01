@@ -23,7 +23,7 @@ if __name__ == '__main__':
     from PIL import Image
 
     # load the image
-    image = Image.open('smallnorb_export/train/012149_car_04_rt.jpg ')
+    image = Image.open('smallnorb_export/train/012149_car_04_rt.jpg')
     # summarize some details about the image
     print(image.format)
     print(image.mode)
