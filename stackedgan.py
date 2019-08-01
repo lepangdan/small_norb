@@ -368,10 +368,10 @@ def build_and_train_models():
     x_test = np.load('x_test')
     y_test = np.load('y_test')
 
-    print('x_train', x_train)
-    print('y_train', y_train)
-    print('x_test', x_test)
-    print('y_test', y_test)
+    print('x_train.npy', x_train)
+    print('y_train.npy', y_train)
+    print('x_test.npy', x_test)
+    print('y_test.npy', y_test)
 
 
 
