@@ -24,8 +24,8 @@ if __name__ == '__main__':
     import os
     import numpy as np
     import glob
-    parent_data_path = 'smallnorb_export'
-    files = [f for f in glob.glob(os.join(parent_data_path) + "**/*.txt", recursive=True)]
+    # parent_data_path = 'smallnorb_export'
+    # files = [f for f in glob.glob(os.join(parent_data_path) + "**/*.txt", recursive=True)]
 
 
     # load the image
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print('min data:', np.amin(data))
 
     import glob
-    print(glob.glob("smallnorb_export/train"+ "*.jpg"))
+    print(glob.glob("smallnorb_export/train/"+"*.jpg"))
 
     # show the image
     # image.show()
