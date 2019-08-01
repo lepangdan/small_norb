@@ -17,6 +17,7 @@ def load_data(dataset_split):
         print(y_data)
         if first_flag:
             x_data = image_np
+            x_data = np.expand_dims(x_data, axis=0 )
 
             first_flag = False
         else:
