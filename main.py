@@ -22,6 +22,10 @@ if __name__ == '__main__':
     # load and show an image with Pillow
     from PIL import Image
     import numpy as np
+    import glob
+    parent_data_path = 'smallnorb_export'
+    files = [f for f in glob.glob(os.join(parent_data_path) + "**/*.txt", recursive=True)]
+
 
     # load the image
     image = Image.open('smallnorb_export/train/012149_car_04_rt.jpg')
