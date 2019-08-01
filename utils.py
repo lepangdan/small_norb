@@ -356,8 +356,8 @@ class DCGAN(object):
         return images[:, :, :, np.newaxis] / 255.0, labels
 
 def get_training_data():
-    fid_images = open('../datasets/smallnorb/smallnorb-5x46789x9x18x6x2x96x96-training-dat.mat', 'r')
-    fid_labels = open('../datasets/smallnorb/smallnorb-5x46789x9x18x6x2x96x96-training-cat.mat', 'r')
+    fid_images = open('../datasets/smallnorb/smallnorb-5x46789x9x18x6x2x96x96-training-dat.mat', 'r', encoding='utf-8')
+    fid_labels = open('../datasets/smallnorb/smallnorb-5x46789x9x18x6x2x96x96-training-cat.mat', 'r', encoding='utf-8')
 
     for i in range(6):
         a = fid_images.read(4)  # header
