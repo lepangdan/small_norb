@@ -17,8 +17,9 @@ def load_data(dataset_split):
         # print(y_data)
         if first_flag:
             x_data = image_np
+
             first_flag = False
         else:
-            x_data = np.stack((x_data, image_np))
+            x_data = np.concatenate((x_data, image_np), axis=0)
         # print(x_data)
     return x_data, y_data
