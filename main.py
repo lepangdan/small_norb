@@ -39,7 +39,7 @@ if __name__ == '__main__':
     print('min data:', np.amin(data))
 
     import glob
-    print(glob.glob("smallnorb_export/train"))
+    print(glob.glob("smallnorb_export/train/"))
 
     # show the image
     # image.show()
