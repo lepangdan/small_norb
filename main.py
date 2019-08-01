@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     # Initialize the dataset from the folder in which
     # dataset archives have been uncompressed
-    dataset = SmallNORBDataset(dataset_root='../datasets/smallnorb/')
+    # dataset = SmallNORBDataset(dataset_root='../datasets/smallnorb/')
     #
     # # Dump all images to disk
     # dataset.export_to_jpg(export_dir='smallnorb_export')
@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # dataset.explore_random_examples(dataset_split='train')
 
     dataset.group_dataset_by_category_and_instance('train')
-    
+
     # load and show an image with Pillow
     from PIL import Image
     import numpy as np
