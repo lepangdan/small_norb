@@ -366,31 +366,31 @@ def build_and_train_models():
 
     # reshape and normalize images
     print(x_train.shape)
-    image_size = x_train.shape[1]
-    x_train = np.reshape(x_train, [-1, image_size, image_size, 1])
-    x_train = x_train.astype('float32') / 255
+    # image_size = x_train.shape[1]
+    # x_train = np.reshape(x_train, [-1, image_size, image_size, 1])
+    # x_train = x_train.astype('float32') / 255
+    #
+    # x_test = np.reshape(x_test, [-1, image_size, image_size, 1])
+    # x_test = x_test.astype('float32') / 255
+    #
+    # # number of labels
+    # num_labels = len(np.unique(y_train))
+    # # to one-hot vector
+    # y_train = to_categorical(y_train)
+    # y_test = to_categorical(y_test)
 
-    x_test = np.reshape(x_test, [-1, image_size, image_size, 1])
-    x_test = x_test.astype('float32') / 255
-
-    # number of labels
-    num_labels = len(np.unique(y_train))
-    # to one-hot vector
-    y_train = to_categorical(y_train)
-    y_test = to_categorical(y_test)
-
-    model_name = "stackedgan_mnist"
-    # network parameters
-    batch_size = 64
-    train_steps = 10  # default 10000
-    lr = 2e-4
-    decay = 6e-8
-    input_shape = (image_size, image_size, 1)
-    label_shape = (num_labels,)
-    z_dim = 50
-    z_shape = (z_dim,)
-    feature1_dim = 256
-    feature1_shape = (feature1_dim,)
+    # model_name = "stackedgan_mnist"
+    # # network parameters
+    # batch_size = 64
+    # train_steps = 10  # default 10000
+    # lr = 2e-4
+    # decay = 6e-8
+    # input_shape = (image_size, image_size, 1)
+    # label_shape = (num_labels,)
+    # z_dim = 50
+    # z_shape = (z_dim,)
+    # feature1_dim = 256
+    # feature1_shape = (feature1_dim,)
 
     # # build discriminator 0 and Q network 0 models
     # inputs = Input(shape=input_shape, name='discriminator0_input')
