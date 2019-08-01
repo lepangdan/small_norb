@@ -367,6 +367,7 @@ def get_training_data():
 
     for idx in range(num_images):
         temp = fid_images.read(96 * 96)
+        print('temp:',temp)
         images[idx, :, :] = np.fromstring(temp, 'uint8').reshape(96, 96).T
 
     for i in range(5):
