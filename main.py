@@ -32,6 +32,8 @@ if __name__ == '__main__':
     print(image.mode)
     print(image.size)
     print(data)
+    print('max data:', np.amax(data))
+    
 
     # show the image
     # image.show()
