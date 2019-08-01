@@ -342,7 +342,7 @@ def train_encoder(model, data, model_name="stackedgan_mnist", batch_size=64):
     model.fit(x_train,
               y_train,
               validation_data=(x_test, y_test),
-              epochs=10,
+              epochs=1,
               batch_size=batch_size)
 
     model.save(model_name + "-encoder.h5")
