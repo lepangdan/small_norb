@@ -18,7 +18,6 @@ if __name__ == '__main__':
     # to show how data look like
     # dataset.explore_random_examples(dataset_split='train')
 
-    dataset.group_dataset_by_category_and_instance('train')
 
     # load and show an image with Pillow
     from PIL import Image
