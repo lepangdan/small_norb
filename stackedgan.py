@@ -356,12 +356,24 @@ def build_and_train_models():
     # (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     # load small_norb data
-    (x_train, y_train) = utils.load_data('train')
-    np.save('x_train', x_train)
-    np.save('y_train', y_train)
-    (x_test, y_test) = utils.load_data('test')
-    np.save('x_test', x_test)
-    np.save('y_test', y_test)
+    # (x_train, y_train) = utils.load_data('train')
+    # np.save('x_train', x_train)
+    # np.save('y_train', y_train)
+    # (x_test, y_test) = utils.load_data('test')
+    # np.save('x_test', x_test)
+    # np.save('y_test', y_test)
+
+    x_train = np.load('x_train')
+    y_train = np.load('y_train')
+    x_test = np.load('x_test')
+    y_test = np.load('y_test')
+
+    print('x_train', x_train)
+    print('y_train', y_train)
+    print('x_test', x_test)
+    print('y_test', y_test)
+
+
 
 
     # reshape and normalize images
