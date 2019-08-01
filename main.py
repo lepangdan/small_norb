@@ -21,14 +21,17 @@ if __name__ == '__main__':
 
     # load and show an image with Pillow
     from PIL import Image
+    import numpy as np
 
     # load the image
     image = Image.open('smallnorb_export/train/012149_car_04_rt.jpg')
     # summarize some details about the image
+    image.load()
+    data = np.asarray(image, dtype="int32")
     print(image.format)
     print(image.mode)
     print(image.size)
-    print(image)
+    print(data)
 
     # show the image
     # image.show()
