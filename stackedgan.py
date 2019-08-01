@@ -566,3 +566,4 @@ if __name__ == '__main__':
         test_generator((gen0, gen1), params)
     else:
         build_and_train_models()
+        print('ffffff')
