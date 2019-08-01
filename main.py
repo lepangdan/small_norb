@@ -31,10 +31,9 @@ if __name__ == '__main__':
     print(image.format)
     print(image.mode)
     print(image.size)
-    print(data)
+    print(type(data))
     print('max data:', np.amax(data))
     print('min data:', np.amin(data))
-
 
     # show the image
     # image.show()
