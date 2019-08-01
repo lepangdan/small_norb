@@ -41,7 +41,11 @@ if __name__ == '__main__':
     print('min data:', np.amin(data))
 
     import glob
-    print(glob.glob("smallnorb_export/train/"+"*.jpg"))
+    for image_path in glob.glob("smallnorb_export/train/"+"*.jpg"):
+    # print(glob.glob("smallnorb_export/train/"+"*.jpg"))
+        print(image_path)
+        break
+
 
     # show the image
     # image.show()
