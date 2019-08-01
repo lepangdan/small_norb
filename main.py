@@ -16,4 +16,4 @@ if __name__ == '__main__':
 
     # Explore random examples of the training set
     # to show how data look like
-    dataset.explore_random_examples(dataset_split='train')
+    # dataset.explore_random_examples(dataset_split='train')
