@@ -64,6 +64,7 @@ if __name__ == '__main__':
         return x_data, y_data
 
     (x_train, y_train) = load_data('train')
+    print(x_train,y_train)
 
 
     # show the image
